@@ -10,7 +10,7 @@ public class EnemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = Random.Range(3.0f, 5.0f);
+        speed = Random.Range(1.0f, 5.0f);
         _wavePointIndex = 0;
         UpdateWaypointIndex();
     }
