@@ -5,9 +5,10 @@ public class Turret : MonoBehaviour
     public float range = 15f;
     public float speed = 10f;
     public Transform target;
+    public float fireRate = 1f;
     public Transform partToRotate;
     private string _enemyTag = "Enemy";
-    
+    private float _fireCountDown = 0f;
     void Start()
     {
         InvokeRepeating(nameof(UpdateTarget), 0f, 1f);
@@ -21,6 +22,18 @@ public class Turret : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * speed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        if (_fireCountDown <= 0f)
+        {
+            Shoot();
+            _fireCountDown = 1f / fireRate;
+        }
+
+        _fireCountDown -= Time.deltaTime;
+    }
+
+    private void Shoot()
+    {
+        
     }
     
     private void UpdateTarget()
