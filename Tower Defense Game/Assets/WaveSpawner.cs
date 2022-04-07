@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,28 +8,28 @@ public class WaveSpawner : MonoBehaviour
 
     public float timeBetweenWaves = 5f;
 
-    private float countDown = 5f;
+    private float _countDown = 5f;
 
-    private int waveIndex = 0;
+    private int _waveIndex;
     public Text waveCountDownText;
 
     // Update is called once per frame
     void Update()
     {
-        if (countDown < 1f)
+        if (_countDown < 1f)
         {
-            waveIndex++;
+            _waveIndex++;
             StartCoroutine(SpawnWave());
-            countDown = timeBetweenWaves;
+            _countDown = timeBetweenWaves;
         }
 
-        countDown -= Time.deltaTime;
-        waveCountDownText.text = Mathf.Round(countDown).ToString();
-    }
+        _countDown -= Time.deltaTime;
+        waveCountDownText.text = $"{Mathf.Round(_countDown)}";
+}
 
     IEnumerator SpawnWave()
     {
-        for (int i = 0; i < waveIndex; i++)
+        for (int i = 0; i < _waveIndex; i++)
         {
             Instantiate(enemyPrefab);
             yield return new WaitForSeconds(0.5f);
