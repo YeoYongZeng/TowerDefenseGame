@@ -164,10 +164,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 15
-  speed: 10
-  target: {fileID: 0}
   fireRate: 1
+  target: {fileID: 0}
   partToRotate: {fileID: 6211678599003032679}
+  bulletPrefab: {fileID: 370994491078998772, guid: 984fc0842fb9043e5b395ccc88110638, type: 3}
+  firePoint: {fileID: 0}
+  speed: 10
 --- !u!1 &5197303660308315983
 GameObject:
   m_ObjectHideFlags: 0

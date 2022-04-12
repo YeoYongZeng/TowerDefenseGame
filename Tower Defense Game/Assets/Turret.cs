@@ -2,11 +2,17 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    [Header("Attributes")]
     public float range = 15f;
-    public float speed = 10f;
-    public Transform target;
     public float fireRate = 1f;
+    
+    [Header("Unity Setup Fields")]
+    public Transform target;
     public Transform partToRotate;
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float speed = 10f;
+    
     private string _enemyTag = "Enemy";
     private float _fireCountDown = 0f;
     void Start()
@@ -24,7 +30,7 @@ public class Turret : MonoBehaviour
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
         if (_fireCountDown <= 0f)
         {
-            Shoot();
+            //Shoot();
             _fireCountDown = 1f / fireRate;
         }
 
@@ -33,7 +39,7 @@ public class Turret : MonoBehaviour
 
     private void Shoot()
     {
-        
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
     
     private void UpdateTarget()
